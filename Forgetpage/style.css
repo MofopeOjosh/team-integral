@@ -1,0 +1,173 @@
+html,
+body {
+    font-family: 'Lato', sans-serif;
+    background-image: url("img/Thinking_Face_Emoji_grande.png");
+    background-repeat: no-repeat;
+    background-position: right  top 20px;
+    background-origin: content-box;
+    background-size:505px 609px;
+}
+
+.navbar {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.bg-dark {
+    background-color: #333333 !important;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link {
+    color: white;
+    border: 2px solid #FD8032;
+    border-radius: 64px;
+    padding: 2px 25px;
+    background: #fd8032;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    padding: 5px 10px;
+}
+
+li.nav-item {
+    margin: 5px 10px;
+}
+
+.login-box {
+    margin: auto;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    padding: 60px 0 80px;
+}
+
+.admin-login>.form-group>.form-control:focus{
+    border-color: #fd8032;
+}
+
+.admin-login>.form-group>.form-control {
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid grey;
+    margin-bottom: 20px;
+}
+
+.sign-in{
+    color: #fd8032;
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.promise{
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 0.8;
+    letter-spacing: 0.02rem;
+}
+
+.intro {
+    color: black;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.admin-login>.form-group>label {
+    color: white;
+}
+
+.admin-login>.form-group {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.admin-login {
+    text-align: center;
+    width: 70%;
+    margin-top: 20px;
+}
+
+.admin-login>button {
+    background: #FD8032;
+    padding: 10px 80px;
+    border-radius: 63px;
+    border-color: #FD8032;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.admin-login>button:hover {
+    background: rgb(252, 251, 250);
+    color: #FD8032;
+    border-color: #FD8032;
+    border-width: 2px;
+}
+
+.forgot-holder {
+    margin-top: 15px;
+}
+
+#emailHelp {
+    opacity: 0;
+}
+.forgot-holder{
+    margin-top: 15px;
+
+}
+.forgot-password {
+    color: black !important;
+    font-size: 12px;
+    margin-bottom: 0;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+    .login-box {
+        width: 100%;
+        margin-top: 10%;
+        padding: 40px 0 60px;
+    }
+    .admin-login {
+        width: 80%;
+    }
+}
+
+hr {
+    height: 1px;
+    color: #ed1d61;
+    background: #ed1d61;
+    font-size: 0;
+    border: 0;
+}
+input.placeholder{
+    text-align: center;
+}
+.footer {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    border-top: 2px solid grey;
+
+    /* Set the fixed height of the footer here */
+
+    height: 60px;
+
+    line-height: 60px;
+
+    /* Vertically center the text there */
+
+    background-color: white;
+
+}
+
