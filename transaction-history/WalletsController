@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Http\Controllers;
+use Unirest;
+
+class WalletsController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    public function token(){
+        Unirest\Request::verifyPeer(false);
+        $headers = array(
+            'content-type' => 'application/json',
+            'cache-control' => 'no-cache'
+            );
+        // $headers = array('content-type' => 'application/json', 'cache-control' => 'no-cache');
+        $query = array(
+            'apiKey' => 'ts_JQDHY3O8G5QWXBOR9XHF', 
+            'secret' => 'ts_73137GS9V58MVJDEWP9EXDHKW3VIL9'
+            );
+        $params = Unirest\Request\Body::json($query);
+        $response = Unirest\Request::post('https://moneywave.herokuapp.com/v1/merchant/verify', 
+            $headers, 
+            $params
+            );
+        $data = json_decode($response->raw_body, TRUE);
+        return $data;
+    }
+
+    //
+    public function show(){
+        return view('walletToWallet');
+
+    }
+    public function store(){
+        $access = $this->token();
+        $status =  $access['status'];
+        if ($status == "success"){
+            $token =  $access['token'];
+            $headers = array(
+                'content-type' => 'application/json', 
+                'Authorization'=> $token
+            );
+            $query = array(
+                'sourceWallet'=> 0, 
+                'recipientWallet' => 6789, 
+                'amount' => '10', 
+                'currency' => 'NGN', 
+                'lock' => 'ifeoluwa47'
+                );
+            $params = Unirest\Request\Body::json($query);
+            $response = Unirest\Request::post(
+                'https://moneywave.herokuapp.com/v1/wallet/transfer', 
+                $headers, 
+                $params
+                );
+            $data = var_dump(json_decode($response->raw_body, TRUE));
+        }
+        else{
+            $data = "Invalid Key";
+        }
+        return view('walletToWallet', compact('data'));
+    }
+    public function history(){
+        $access = $this->token();
+        $status =  $access['status'];
+        if ($status == "success"){
+            $token =  $access['token'];
+            $headers = array(
+                'content-type' => 
+                'application/json', 
+                'Authorization'=> $token
+                );
+            $query = array(
+              'status' => 'failed',
+              'date' => '2017-03-14',
+              'type' => 'credit',
+              'currency' => 'NGN'
+            );
+            $params = Unirest\Request\Body::json($query);
+            try{
+                $response = Unirest\Request::get(
+                    'https://moneywave.herokuapp.com/v1/report/transactions', 
+                    $headers, 
+                    $params
+                    );
+                $data = json_decode($response->raw_body, TRUE);
+                return view('history', compact('data'));
+            }
+            catch (HttpException $ex){
+                // return view('history', compact('data'));
+            }
+        }
+        else{
+            $data = $access;
+            return view('history', compact('data'));
+        }   
+    }
